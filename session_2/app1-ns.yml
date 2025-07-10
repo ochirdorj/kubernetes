@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app1-dev
+  labels:
+    app: app1
+    env: dev
+---
+
+apiVersion: v1                # Kubernetes API version used in this YAML decriptor
+kind: Pod                     # Type of Kubernetes object/resource
+metadata:                     # Pod metadata (name, labels, annotations and so on)
+  name: app1-pod-1             # Pod Name
+  labels: 
+    app: app1                # Key value pair Label value has charactory limit
+    env: dev
+  annotations:
+    app: This application pod is running nginx  application # There is no annotation selection and query
+    
+spec:                         # Pod Specification/Contents (list of containers, volumes, image, ports and so on)
+  containers:
+  - image: nginx:latest              # Container Image
+    name: nginx     # Container Name
+    ports:            
+    - containerPort: 80       # The Port the container is listening on
+      protocol: TCP
+---
